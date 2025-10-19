@@ -1,24 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fitness Tracker App</title>
-  <link href="../frontend/assets/css/Index.css" rel="stylesheet">
+  <title>Fitness Tracker</title>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <link href="../frontend/assets/css/styles.css" rel="stylesheet"/>
+  <link href="../frontend/assets/css/spapp.css" rel="stylesheet"/>
 </head>
-
-<!-- Navbar -->
-<header>
-    <nav>
-        <a href="Index.html">Home</a>
-        <a href="Blog.html">Blog</a>
-        <a href="Activites.html">Activites</a>
-        <a href="LoginPage.html">Login</a>
-    </nav>
-</header>
-
 <body>
-<script src="../frontend/assets/js/Index.js"></script>
+  <header>
+    <nav class="navbar">
+    <div class="nav-brand">
+        <div class="logo">💪</div>
+        <span>Fitness Tracker</span>
+    </div>
+    
+    <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#profile">Profile</a></li>
+    </ul>
+    
+    <div class="sidebar-overlay"></div>
+    </nav>
+  </header>
+  <main id="spapp" role="main">
+    <section id="home" data-load="views/home.html"></section>
+    <section id="activities" data-load="views/activities.html"></section>
+    <section id="blog" data-load="views/blog.html"></section>
+    <section id="login" data-load="views/login.html"></section>
+    <section id="register" data-load="views/register.html"></section>
+    <section id="profile" data-load="views/profile.html"></section>
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-col footer-left">
+                &copy; Fitness Tracker 2030
+            </div>
+            <div class="footer-col footer-center">
+                <a class="social-btn" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a class="social-btn" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="social-btn" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-col footer-right">
+                <a class="footer-link" href="#!">Privacy Policy</a>
+                <a class="footer-link" href="#!">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.spapp.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/index.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/activities.js"></script>
+  <script src="assets/js/blog.js"></script>
 </body>
 </html>
