@@ -1,0 +1,40 @@
+Users:
+user_id (Primary Key)
+username
+email
+password
+created_at
+
+Activities:
+activity_id (PK)
+user_id (FK → User)
+category_id (FK → Category)
+activity_name
+duration (minutes)
+calories_burned
+date
+
+Category:
+category_id (PK)
+name
+description
+
+BlogPost:
+post_id (PK)
+user_id (FK → User)
+title
+content
+created_at
+
+ProgressLog:
+log_id (PK)
+user_id (FK → User)
+weight_kg
+body_fat_percentage
+
+
+Relationships:
+User → Activity: One-to-many
+User → BlogPost: One-to-many
+User → ProgressLog: One-to-many
+Category → Activity: One-to-many
