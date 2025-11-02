@@ -16,7 +16,7 @@ class ProgresslogDao extends BaseDao {
 
     public function getLatestByUserId($user_id) {
         $stmt = $this->connection->prepare("
-            SELECT * FROM progress_logs 
+            SELECT * FROM progress_log 
             WHERE user_id = :user_id 
             ORDER BY log_id DESC 
             LIMIT 1
