@@ -1,2 +1,2 @@
 backend/vendor
-backend/config.php
+backend/rest/config.php
