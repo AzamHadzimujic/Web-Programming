@@ -1,7 +1,6 @@
 <?php
 require_once 'BaseDao.php';
 
-
 class UsersDao extends BaseDao {
    public function __construct() {
         parent::__construct("users", "user_id");
@@ -21,5 +20,4 @@ class UsersDao extends BaseDao {
         return $stmt->fetch();
     }
 }
-
 ?>

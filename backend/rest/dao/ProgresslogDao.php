@@ -1,7 +1,6 @@
 <?php
 require_once 'BaseDao.php';
 
-
 class ProgresslogDao extends BaseDao {
    public function __construct() {
         parent::__construct("progress_log", "progress_id");
@@ -26,5 +25,4 @@ class ProgresslogDao extends BaseDao {
         return $stmt->fetch();
     }
 }
-
 ?>
