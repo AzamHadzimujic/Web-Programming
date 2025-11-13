@@ -1,7 +1,6 @@
 <?php
 require_once 'BaseDao.php';
 
-
 class CategoryDao extends BaseDao {
    public function __construct() {
         parent::__construct("category", "category_id");
@@ -14,5 +13,4 @@ class CategoryDao extends BaseDao {
         return $stmt->fetch();
     }
 }
-
 ?>

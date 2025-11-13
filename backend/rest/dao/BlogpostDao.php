@@ -1,7 +1,6 @@
 <?php
 require_once 'BaseDao.php';
 
-
 class BlogpostDao extends BaseDao {
    public function __construct() {
         parent::__construct("blogpost", "post_id");
@@ -22,5 +21,4 @@ class BlogpostDao extends BaseDao {
         return $stmt->fetchAll();
     }
 }
-
 ?>
