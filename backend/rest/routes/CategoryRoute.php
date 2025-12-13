@@ -11,6 +11,7 @@
 * )
 */
 Flight::route('GET /categories', function(){
+    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
     $service = new CategoryService();
     $categories = $service->getAll();
     Flight::json($categories);
@@ -34,6 +35,7 @@ Flight::route('GET /categories', function(){
 * )
 */
 Flight::route('GET /categories/@id', function($id){
+    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
     $service = new CategoryService();
     $category = $service->getById($id);
     Flight::json($category);
@@ -55,6 +57,7 @@ Flight::route('GET /categories/@id', function($id){
 * )
 */
 Flight::route('POST /categories', function(){
+    Flight::auth_middleware() -> authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new CategoryService();
     $newCategory = $service->insert($data);
@@ -83,6 +86,7 @@ Flight::route('POST /categories', function(){
 * )
 */
 Flight::route('PUT /categories/@id', function($id){
+    Flight::auth_middleware() -> authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new CategoryService();
     $updatedCategory = $service->update($id, $data);
@@ -107,6 +111,7 @@ Flight::route('PUT /categories/@id', function($id){
 * )
 */
 Flight::route('DELETE /categories/@id', function($id){
+    Flight::auth_middleware() -> authorizeRole(Roles::ADMIN);
     $service = new CategoryService();
     $service->delete($id);
     Flight::json(['message' => 'Category deleted successfully']);
@@ -130,6 +135,7 @@ Flight::route('DELETE /categories/@id', function($id){
 * )
 */
 Flight::route('GET /categories/name/@name', function($name){
+    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
     $service = new CategoryService();
     $category = $service->getByName($name);
     Flight::json($category);

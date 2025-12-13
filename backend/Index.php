@@ -3,9 +3,9 @@ require 'vendor/autoload.php'; //run autoloader
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once __DIR__ . '/rest/services/ActivitiesService.php';
 require_once __DIR__ . '/rest/services/BlogpostService.php';
@@ -13,6 +13,7 @@ require_once __DIR__ . '/rest/services/CategoryService.php';
 require_once __DIR__ . '/rest/services/ProgresslogService.php';
 require_once __DIR__ . '/rest/services/UsersService.php';
 require_once __DIR__ . '/rest/services/AuthService.php';
+require_once __DIR__ . '/middleware/AuthMiddleware.php';
 
 
 Flight::register('activitiesService', 'ActivitiesService');
@@ -21,6 +22,7 @@ Flight::register('categoryService', 'CategoryService');
 Flight::register('progresslogService', 'ProgresslogService');
 Flight::register('usersService', 'UsersService');
 Flight::register('authService', 'AuthService');
+Flight::register('auth_middleware', 'AuthMiddleware');
 
 // This wildcard route intercepts all requests and applies authentication checks before proceeding.
 Flight::route('/*', function() {
@@ -34,13 +36,8 @@ Flight::route('/*', function() {
            $token = Flight::request()->getHeader("Authentication");
            if(!$token)
                Flight::halt(401, "Missing authentication header");
-
-
-           $decoded_token = JWT::decode($token, new Key(Config::JWT_SECRET(), 'HS256'));
-
-
-           Flight::set('user', $decoded_token->user);
-           Flight::set('jwt_token', $token);
+           if(Flight::auth_middleware()->verifyToken($token))
+               return TRUE;
            return TRUE;
        } catch (\Exception $e) {
            Flight::halt(401, $e->getMessage());
