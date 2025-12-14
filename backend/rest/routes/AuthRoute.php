@@ -81,7 +81,7 @@ Flight::group('/auth', function() {
        $data = Flight::request()->data->getData();
 
 
-       $response = Flight::auth_service()->login($data);
+       $response = Flight::authService()->login($data);
   
        if ($response['success']) {
            Flight::json([
