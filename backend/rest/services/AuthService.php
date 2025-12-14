@@ -48,7 +48,7 @@ class AuthService extends BaseService {
             'exp' => time() + (60 * 60 * 24)
         ];
 
-        $token = JWT::encode($jwt_payload, (Config::JWT_SECRET), 'HS256');
+        $token = JWT::encode($jwt_payload, Config::JWT_SECRET(), 'HS256');
 
         return ['success' => true, 'data' => array_merge($user, ['token' => $token])];
     }

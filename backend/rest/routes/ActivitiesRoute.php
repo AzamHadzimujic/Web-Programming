@@ -11,7 +11,7 @@
 * )
 */
 Flight::route('GET /activities', function(){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ActivitiesService();
     $activities = $service->getAll();
     Flight::json($activities);
@@ -35,7 +35,7 @@ Flight::route('GET /activities', function(){
 * )
 */
 Flight::route('GET /activities/@id', function($id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ActivitiesService();
     $activity = $service->getById($id);
     Flight::json($activity);
@@ -57,7 +57,7 @@ Flight::route('GET /activities/@id', function($id){
 * )
 */
 Flight::route('POST /activities', function(){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new ActivitiesService();
     $newActivity = $service->insert($data); 
@@ -86,7 +86,7 @@ Flight::route('POST /activities', function(){
 * )
 */
 Flight::route('PUT /activities/@id', function($id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new ActivitiesService();
     $updatedActivity = $service->update($id, $data);
@@ -135,7 +135,7 @@ Flight::route('DELETE /activities/@id', function($id){
 * )
 */
 Flight::route('GET /activities/user/@user_id', function($user_id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ActivitiesService();
     $activities = $service->getByUserId($user_id);
     Flight::json($activities);
@@ -159,7 +159,7 @@ Flight::route('GET /activities/user/@user_id', function($user_id){
 * )
 */
 Flight::route('GET /activities/category/@category_id', function($category_id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ActivitiesService();
     $activities = $service->getByCategoryId($category_id);
     Flight::json($activities);

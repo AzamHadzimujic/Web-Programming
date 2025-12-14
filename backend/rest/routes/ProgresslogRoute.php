@@ -11,7 +11,7 @@
 * )
 */
 Flight::route('GET /progresslog', function(){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ProgresslogService();
     $result = $service->getAll();
     Flight::json($result);
@@ -35,7 +35,7 @@ Flight::route('GET /progresslog', function(){
 * )
 */
 Flight::route('GET /progresslog/@id', function($id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ProgresslogService();
     $result = $service->getById($id);
     Flight::json($result);
@@ -57,7 +57,7 @@ Flight::route('GET /progresslog/@id', function($id){
 * )
 */
 Flight::route('POST /progresslog', function(){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new ProgresslogService();
     $result = $service->insert($data);
@@ -86,7 +86,7 @@ Flight::route('POST /progresslog', function(){
  * )
  */
 Flight::route('PUT /progresslog/@id', function($id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new ProgresslogService();
     $result = $service->update($id, $data);
@@ -135,7 +135,7 @@ Flight::route('DELETE /progresslog/@id', function($id){
 * )
 */
 Flight::route('GET /progresslog/user/@user_id', function($user_id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ProgresslogService();
     $result = $service->getByUserId($user_id);
     Flight::json($result);
@@ -159,7 +159,7 @@ Flight::route('GET /progresslog/user/@user_id', function($user_id){
 * )
 */
 Flight::route('GET /progresslog/user/@user_id/latest', function($user_id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new ProgresslogService();
     $result = $service->getLatestByUserId($user_id);
     Flight::json($result);

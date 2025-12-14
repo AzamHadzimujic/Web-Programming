@@ -11,7 +11,7 @@
 * )
 */
 Flight::route('GET /blogpost', function(){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new BlogpostService();
     $blogposts = $service->getAll();
     Flight::json($blogposts);
@@ -35,7 +35,7 @@ Flight::route('GET /blogpost', function(){
 * )
 */
 Flight::route('GET /blogpost/@id', function($id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new BlogpostService();
     $blogpost = $service->getById($id);
     Flight::json($blogpost);
@@ -57,7 +57,7 @@ Flight::route('GET /blogpost/@id', function($id){
 * )
 */
 Flight::route('POST /blogpost', function(){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new BlogpostService();
     $newBlogpost = $service->insert($data);
@@ -86,7 +86,7 @@ Flight::route('POST /blogpost', function(){
 * )
 */
 Flight::route('PUT /blogpost/@id', function($id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $data = Flight::request()->data->getData();
     $service = new BlogpostService();
     $updatedBlogpost = $service->update($id, $data);
@@ -135,7 +135,7 @@ Flight::route('DELETE /blogpost/@id', function($id){
 * )
 */
 Flight::route('GET /blogpost/user/@user_id', function($user_id){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new BlogpostService();
     $blogposts = $service->getByUserId($user_id);
     Flight::json($blogposts);
@@ -159,7 +159,7 @@ Flight::route('GET /blogpost/user/@user_id', function($user_id){
 * )
 */
 Flight::route('GET /blogpost/search/@keyword', function($keyword){
-    Flight::auth_middleware() -> authorizeRole(Roles::USER | Roles::ADMIN);
+    Flight::auth_middleware() -> authorizeRole(Roles::USER, Roles::ADMIN);
     $service = new BlogpostService();
     $blogposts = $service->searchByTitle($keyword);
     Flight::json($blogposts);
