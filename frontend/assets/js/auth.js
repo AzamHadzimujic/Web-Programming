@@ -53,27 +53,6 @@ async function apiRequest(path, options = {}) {
   return data;
 }
 
-// ---- Optional UI wiring (KISS) ----
-function updateNav() {
-  const loginLi = document.getElementById("nav-login");
-  const registerLi = document.getElementById("nav-register");
-  const profileLi = document.getElementById("nav-profile");
-  const logoutLi = document.getElementById("nav-logout");
-
-  if (!loginLi || !registerLi || !profileLi || !logoutLi) return;
-
-  if (Auth.isLoggedIn()) {
-    loginLi.classList.add("hidden");
-    registerLi.classList.add("hidden");
-    profileLi.classList.remove("hidden");
-    logoutLi.classList.remove("hidden");
-  } else {
-    loginLi.classList.remove("hidden");
-    registerLi.classList.remove("hidden");
-    profileLi.classList.add("hidden");
-    logoutLi.classList.add("hidden");
-  }
-}
 
 document.addEventListener("submit", async function(e) {
   // Login
