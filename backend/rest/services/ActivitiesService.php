@@ -12,8 +12,38 @@ class ActivitiesService extends BaseService {
     public function getByCategoryId($category_id) {
         return $this->dao->getByCategoryId($category_id);
     }
+
+    public function insert($data) {
+    $data = (array)$data;
+
+    $errors = $this->validateActivityData($data);
+    if (!empty($errors)) {
+      return ['success' => false, 'errors' => $errors];
+    }
+
+    $jwtUser = Flight::get('user'); // object from JWT
+    if ($jwtUser && isset($jwtUser->user_id)) {
+      // If regular user: force user_id to be the logged-in user
+      if ($jwtUser->role === Roles::USER) {
+        $data['user_id'] = (int)$jwtUser->user_id;
+      } else {
+        // Admin can set user_id, but if missing we still set it
+        if (!isset($data['user_id'])) $data['user_id'] = (int)$jwtUser->user_id;
+      }
+    }
+    $created = $this->dao->insert($data);
+    return ['success' => true, 'data' => $created];
+    }
+
     public function validateActivityData($data) {
         $errors = [];
+
+        if (!isset($data['name']) || trim($data['name']) === '') {
+            $errors[] = 'Name is required.';
+        }
+        if (!isset($data['category_id']) || !is_numeric($data['category_id']) || (int)$data['category_id'] <= 0) {
+            $errors[] = 'category_id must be a positive integer.';
+        }
         if (isset($data['activity_type']) && empty($data['activity_type'])) {
             $errors[] = 'Activity type is required.';
         }

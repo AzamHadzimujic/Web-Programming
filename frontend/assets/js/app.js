@@ -24,14 +24,20 @@ $(document).ready(function () {
         view: "login",
         load: "login.html"
     });
+
     app.route({
         view: "register",
         load: "register.html"
     });
+
     app.route({
         view: "profile",
         load: "profile.html"
     });
 
+    app.route({ 
+        view: "progresslog", 
+        load: "progresslog.html" });
+        
     app.run();
 });

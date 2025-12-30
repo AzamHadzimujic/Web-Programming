@@ -4,6 +4,7 @@ require_once __DIR__ . '/../config.php';
 class BaseDao {
    protected $table;
    protected $connection;
+   protected $primaryKey;
 
 
    public function __construct($table, $primaryKey = 'id') {
